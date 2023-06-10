@@ -4,6 +4,7 @@
   "description": "",
   "main": ".eslintrc.js",
   "scripts": {
+    "prepare": "husky install",
     "lint": "eslint .",
     "lint:staged": "lint-staged",
     "dev": "nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts"
