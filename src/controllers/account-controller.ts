@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import accountsService from '@/services/accounts-service';
 import { CreateAccountParams, Account } from '@/protocols/accounts';
 
@@ -12,7 +12,7 @@ export async function getAccounts(req: Request, res: Response) {
   }
 }
 
-export async function postAccount(req: Request, res: Response) {
+export async function postAccount(req: Request, res: Response, next: NextFunction) {
   const { bank, agency, accountNum } = req.body as CreateAccountParams;
 
   const balance = 0;
@@ -26,8 +26,19 @@ export async function postAccount(req: Request, res: Response) {
 
   try {
     const newAccount = await accountsService.addAccount(accountData);
-    return res.status(httpStatus.OK).send();
-  } catch (error) {
-    return res.status(httpStatus.BAD_REQUEST).send(error);
+    return res.status(httpStatus.OK).send('Account created successfuly!');
+  } catch (e) {
+    next(e);
+  }
+}
+
+export async function delAccount(req: Request, res: Response, next: NextFunction) {
+  const { id } = req.params;
+
+  try {
+    const deleteAccount = await accountsService.removeAccount(Number(id));
+    return res.status(httpStatus.OK).send('Bank Account deleted successfuly!');
+  } catch (e) {
+    next(e);
   }
 }

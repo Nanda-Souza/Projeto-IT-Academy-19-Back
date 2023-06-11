@@ -9,3 +9,5 @@ export type AccountEntity = {
 export type Account = Omit<AccountEntity, 'id'>;
 
 export type CreateAccountParams = Omit<AccountEntity, 'id' | 'balance'>;
+
+export type DeleteAccountParams = Pick<AccountEntity, 'id'>;

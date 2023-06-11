@@ -10,9 +10,19 @@ async function insertAccount(bankAccount: AccountEntity): Promise<AccountEntity>
   return bankAccount;
 }
 
-const accountsRepositort = {
+async function deleteAccount(id: number) {
+  for (let i = 0; i < accounts.length; i++) {
+    if (accounts[i].id === id) {
+      accounts.splice(i, 1);
+    }
+  }
+  return id;
+}
+
+const accountsRepository = {
   allAccounts,
   insertAccount,
+  deleteAccount,
 };
 
-export default accountsRepositort;
+export default accountsRepository;
