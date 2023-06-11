@@ -13,3 +13,10 @@ export function invalidAccountIdError(): ApplicationError {
     message: 'Unable to delete bank account, invalid id!',
   };
 }
+
+export function accountMergeError(): ApplicationError {
+  return {
+    name: 'AccountMergeError',
+    message: 'Unable to merge accounts!',
+  };
+}

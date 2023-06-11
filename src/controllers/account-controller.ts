@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 import accountsService from '@/services/accounts-service';
-import { CreateAccountParams, Account } from '@/protocols/accounts';
+import { CreateAccountParams, Account, MergeAccountsParams } from '@/protocols/accounts';
 
 export async function getAccounts(req: Request, res: Response) {
   try {
@@ -38,6 +38,17 @@ export async function delAccount(req: Request, res: Response, next: NextFunction
   try {
     const deleteAccount = await accountsService.removeAccount(Number(id));
     return res.status(httpStatus.OK).send('Bank Account deleted successfully!');
+  } catch (e) {
+    next(e);
+  }
+}
+
+export async function postMergeAccounts(req: Request, res: Response, next: NextFunction) {
+  const { accountId, mergedId } = req.body as MergeAccountsParams;
+
+  try {
+    const mergedAccounts = await accountsService.mergeAccounts(accountId, mergedId);
+    return res.status(httpStatus.OK).send('Accounts merged successfully!');
   } catch (e) {
     next(e);
   }

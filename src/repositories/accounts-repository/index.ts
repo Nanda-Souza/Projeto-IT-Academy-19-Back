@@ -19,10 +19,16 @@ async function deleteAccount(id: number) {
   return id;
 }
 
+async function updateMergedAccount(accountIndex: number, mergedIndex: number) {
+  accounts[accountIndex].balance += accounts[mergedIndex].balance;
+  return accountIndex;
+}
+
 const accountsRepository = {
   allAccounts,
   insertAccount,
   deleteAccount,
+  updateMergedAccount,
 };
 
 export default accountsRepository;

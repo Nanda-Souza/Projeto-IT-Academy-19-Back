@@ -1,4 +1,4 @@
-import { accountAlreadyExistsError, invalidAccountIdError } from './errors';
+import { accountAlreadyExistsError, invalidAccountIdError, accountMergeError } from './errors';
 import accountsRepository from '@/repositories/accounts-repository';
 import { AccountEntity, Account } from '@/protocols/accounts';
 import accounts from '@/database/data';
@@ -41,6 +41,27 @@ async function removeAccount(id: number): Promise<any> {
   return deletedAccount;
 }
 
+async function mergeAccounts(accountId: number, mergedId: number) {
+  const existingId1 = await validateAccountId(accountId);
+  const existingId2 = await validateAccountId(mergedId);
+
+  if (existingId1.length == 0 || existingId2.length == 0) throw accountMergeError();
+
+  const accountIndex = accounts.findIndex((account) => {
+    return account.id === accountId;
+  });
+
+  const mergedIndex = accounts.findIndex((account) => {
+    return account.id === mergedId;
+  });
+
+  const mergedAccount = await accountsRepository.updateMergedAccount(accountIndex, mergedIndex);
+
+  const deleteMergeAccount = await accountsRepository.deleteAccount(mergedId);
+
+  return mergedAccount;
+}
+
 async function validateExistingAccount(bankAccount: Account) {
   const accountList = await accountsRepository.allAccounts();
 
@@ -65,4 +86,5 @@ export default {
   listAccounts,
   addAccount,
   removeAccount,
+  mergeAccounts,
 };
