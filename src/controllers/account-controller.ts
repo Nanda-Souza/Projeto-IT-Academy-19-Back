@@ -26,7 +26,7 @@ export async function postAccount(req: Request, res: Response, next: NextFunctio
 
   try {
     const newAccount = await accountsService.addAccount(accountData);
-    return res.status(httpStatus.OK).send('Account created successfuly!');
+    return res.status(httpStatus.OK).send('Account created successfully!');
   } catch (e) {
     next(e);
   }
@@ -37,7 +37,7 @@ export async function delAccount(req: Request, res: Response, next: NextFunction
 
   try {
     const deleteAccount = await accountsService.removeAccount(Number(id));
-    return res.status(httpStatus.OK).send('Bank Account deleted successfuly!');
+    return res.status(httpStatus.OK).send('Bank Account deleted successfully!');
   } catch (e) {
     next(e);
   }

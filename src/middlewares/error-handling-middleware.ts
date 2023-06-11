@@ -26,6 +26,12 @@ export function handleApplicationErrors(
     });
   }
 
+  if (err.name === 'InvalidAccountIdError') {
+    return res.status(httpStatus.NOT_FOUND).send({
+      message: err.message,
+    });
+  }
+
   res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
     error: 'InternalServerError',
     message: 'Internal Server Error',
