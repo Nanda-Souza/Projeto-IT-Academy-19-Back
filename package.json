@@ -6,8 +6,7 @@
   "_moduleAliases": {
     "@": "dist"
   },
-  "scripts": {
-    "build": "npx tsc",
+  "scripts": {    
     "start": "node ./dist/server.js",
     "prepare": "husky install",
     "lint": "eslint .",
