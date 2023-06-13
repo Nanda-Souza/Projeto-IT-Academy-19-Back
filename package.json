@@ -7,7 +7,8 @@
     "@": "dist"
   },
   "scripts": {
-    "start": "node dist/server.js",
+    "build": "tsc",
+    "start": "node ./dist/server.js",
     "prepare": "husky install",
     "lint": "eslint .",
     "lint:staged": "lint-staged",
