@@ -1,6 +1,11 @@
+require('module-alias/register');
+
+import dotenv from 'dotenv';
 import app, { init } from '@/app';
 
-const port = 4000;
+dotenv.config();
+
+const port = +process.env.PORT || 4000;
 
 init().then(() => {
   app.listen(port, () => {
