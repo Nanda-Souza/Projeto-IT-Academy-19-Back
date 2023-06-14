@@ -3,7 +3,7 @@ import 'express-async-errors';
 import express, { Express } from 'express';
 import cors from 'cors';
 import { handleApplicationErrors } from '@/middlewares';
-import { accountsRouter } from '@/routers';
+import { accountsRouter, transactionsRouter } from '@/routers';
 
 const app = express();
 app
@@ -11,6 +11,7 @@ app
   .use(express.json())
   .get('/health', (_req, res) => res.send('OK!'))
   .use('/accounts', accountsRouter)
+  .use('/transactions', transactionsRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {

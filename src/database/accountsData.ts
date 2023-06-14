@@ -6,14 +6,14 @@ const accounts: AccountEntity[] = [
     bank: 'Bradesco',
     agency: '7210',
     accountNum: '00094080',
-    balance: 2824.4,
+    balance: 32578.86,
   },
   {
     id: 2,
     bank: 'NuBank',
     agency: '0001',
     accountNum: '12345678',
-    balance: 328.37,
+    balance: 269.4,
   },
 ];
 

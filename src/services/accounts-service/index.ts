@@ -1,12 +1,12 @@
 import { accountAlreadyExistsError, invalidAccountIdError, accountMergeError } from './errors';
 import accountsRepository from '@/repositories/accounts-repository';
 import { AccountEntity, Account } from '@/protocols/accounts';
-import accounts from '@/database/data';
+import accounts from '@/database/accountsData';
 
 async function listAccounts(): Promise<AccountEntity[]> {
-  const accounts = await accountsRepository.allAccounts();
+  const accountsList = await accountsRepository.allAccounts();
 
-  return accounts;
+  return accountsList;
 }
 
 async function addAccount(bankAccount: Account): Promise<AccountEntity> {

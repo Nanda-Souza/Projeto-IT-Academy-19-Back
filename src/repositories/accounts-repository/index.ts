@@ -1,4 +1,4 @@
-import accounts from '@/database/data';
+import accounts from '@/database/accountsData';
 import { AccountEntity } from '@/protocols/accounts';
 
 async function allAccounts(): Promise<AccountEntity[]> {
