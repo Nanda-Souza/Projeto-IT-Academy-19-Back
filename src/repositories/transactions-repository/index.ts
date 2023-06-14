@@ -7,6 +7,7 @@ let transactions: TransactionEntity[] = [
     date: '11-30-2022',
     type: 'Receita',
     category: 'Salário',
+    description: 'Salário do mês',
     value: 5437.32,
   },
   {
@@ -14,7 +15,8 @@ let transactions: TransactionEntity[] = [
     bankId: 1,
     date: '12-22-2022',
     type: 'Receita',
-    category: 'Segunda parcela 13°',
+    category: 'Salário',
+    description: 'Segunda parcela 13°',
     value: 2200,
   },
   {
@@ -23,6 +25,7 @@ let transactions: TransactionEntity[] = [
     date: '12-30-2022',
     type: 'Receita',
     category: 'Salário',
+    description: 'Salário do mês',
     value: 5437.32,
   },
   {
@@ -30,7 +33,8 @@ let transactions: TransactionEntity[] = [
     bankId: 1,
     date: '1-5-2023',
     type: 'Despesa',
-    category: 'Academia',
+    category: 'Lazer',
+    description: 'Academia',
     value: 50,
   },
   {
@@ -38,7 +42,8 @@ let transactions: TransactionEntity[] = [
     bankId: 1,
     date: '1-6-2023',
     type: 'Despesa',
-    category: 'Natalversário do João',
+    category: 'Lazer',
+    description: 'Natalversário do João',
     value: 133,
   },
   {
@@ -46,7 +51,8 @@ let transactions: TransactionEntity[] = [
     bankId: 1,
     date: '1-28-2023',
     type: 'Despesa',
-    category: 'Contas da casa (água, luz, internet)',
+    category: 'Energia)',
+    description: 'Contas de Luz',
     value: 472.78,
   },
   {
@@ -55,6 +61,7 @@ let transactions: TransactionEntity[] = [
     date: '1-30-2023',
     type: 'Receita',
     category: 'Salário',
+    description: 'Salário do mês',
     value: 6330,
   },
   {
@@ -62,7 +69,8 @@ let transactions: TransactionEntity[] = [
     bankId: 1,
     date: '2-5-2023',
     type: 'Despesa',
-    category: 'Academia',
+    category: 'Lazer',
+    description: 'Academia',
     value: 50,
   },
   {
@@ -71,6 +79,7 @@ let transactions: TransactionEntity[] = [
     date: '2-28-2023',
     type: 'Receita',
     category: 'Salário',
+    description: 'Salário do mês',
     value: 6330,
   },
   {
@@ -79,6 +88,7 @@ let transactions: TransactionEntity[] = [
     date: '6-2-2023',
     type: 'Receita',
     category: 'Salário',
+    description: 'Salário do mês',
     value: 7550,
   },
   {
@@ -86,7 +96,8 @@ let transactions: TransactionEntity[] = [
     bankId: 2,
     date: '6-6-2023',
     type: 'Receita',
-    category: 'Venda de agendas',
+    category: 'Renda extra',
+    description: 'Venda de agendas',
     value: 328.37,
   },
   {
@@ -94,7 +105,8 @@ let transactions: TransactionEntity[] = [
     bankId: 2,
     date: '6-12-2023',
     type: 'Despesa',
-    category: 'Xis do Hiper',
+    category: 'Alimentação',
+    description: 'Xis do Hiper',
     value: 58.97,
   },
 ];

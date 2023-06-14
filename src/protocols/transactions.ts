@@ -4,6 +4,7 @@ export type TransactionEntity = {
   date: string;
   type: string;
   category: string;
+  description: string;
   value: number;
 };
 

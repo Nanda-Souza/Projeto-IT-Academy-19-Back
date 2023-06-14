@@ -17,7 +17,12 @@ async function listTransactionsById(bankId: number): Promise<TransactionEntity[]
 
   const transactionList = await transactionsRepository.allTransactionsByBankId(bankId);
 
-  return transactionList;
+  const convertDateFormat = transactionList.map((transaction) => ({
+    ...transaction,
+    date: dayjs(transaction.date).format('DD/MM/YYYY'),
+  }));
+
+  return convertDateFormat;
 }
 
 async function monthlyBalance(): Promise<any> {
