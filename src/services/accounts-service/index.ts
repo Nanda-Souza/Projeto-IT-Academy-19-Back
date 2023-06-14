@@ -1,7 +1,6 @@
 import { accountAlreadyExistsError, invalidAccountIdError, accountMergeError } from './errors';
 import accountsRepository from '@/repositories/accounts-repository';
 import { AccountEntity, Account } from '@/protocols/accounts';
-import accounts from '@/database/accountsData';
 
 async function listAccounts(): Promise<AccountEntity[]> {
   const accountsList = await accountsRepository.allAccounts();
@@ -15,8 +14,10 @@ async function addAccount(bankAccount: Account): Promise<AccountEntity> {
 
   if (existingAccount.length == 1) throw accountAlreadyExistsError();
 
-  if (accounts.length > 0) {
-    idController = accounts[accounts.length - 1].id;
+  const accountsList = await accountsRepository.allAccounts();
+
+  if (accountsList.length > 0) {
+    idController = accountsList[accountsList.length - 1].id;
   }
 
   const newId = idController + 1;
@@ -45,13 +46,15 @@ async function mergeAccounts(accountId: number, mergedId: number) {
   const existingId1 = await validateAccountId(accountId);
   const existingId2 = await validateAccountId(mergedId);
 
+  const accountsList = await accountsRepository.allAccounts();
+
   if (existingId1.length == 0 || existingId2.length == 0) throw accountMergeError();
 
-  const accountIndex = accounts.findIndex((account) => {
+  const accountIndex = accountsList.findIndex((account) => {
     return account.id === accountId;
   });
 
-  const mergedIndex = accounts.findIndex((account) => {
+  const mergedIndex = accountsList.findIndex((account) => {
     return account.id === mergedId;
   });
 
