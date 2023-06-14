@@ -1,6 +1,7 @@
 import httpStatus from 'http-status';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import transactionsService from '@/services/transactions-service';
+import { TransactionByBankIdParams } from '@/protocols/transactions';
 
 export async function getTransactions(req: Request, res: Response) {
   try {
@@ -26,5 +27,16 @@ export async function getHalfYearBalance(req: Request, res: Response) {
     return res.status(httpStatus.OK).send(halfYearBalance);
   } catch (error) {
     return res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}
+
+export async function postTransactionList(req: Request, res: Response, next: NextFunction) {
+  const { bankId } = req.body as TransactionByBankIdParams;
+
+  try {
+    const transactionList = await transactionsService.listTransactionsById(bankId);
+    return res.status(httpStatus.OK).send(transactionList);
+  } catch (e) {
+    next(e);
   }
 }

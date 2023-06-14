@@ -103,6 +103,12 @@ async function allTransactions(): Promise<TransactionEntity[]> {
   return transactions;
 }
 
+async function allTransactionsByBankId(bankId: number): Promise<TransactionEntity[]> {
+  const filteredList = transactions.filter((transactions) => transactions.bankId === bankId);
+
+  return filteredList;
+}
+
 async function deleteTransactions(bankId: number) {
   transactions = transactions.filter((transactions) => transactions.bankId !== bankId);
 
@@ -123,6 +129,7 @@ const transactionsRepository = {
   allTransactions,
   deleteTransactions,
   mergeTransactions,
+  allTransactionsByBankId,
 };
 
 export default transactionsRepository;

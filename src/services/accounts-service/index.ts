@@ -90,4 +90,5 @@ export default {
   addAccount,
   removeAccount,
   mergeAccounts,
+  validateAccountId,
 };

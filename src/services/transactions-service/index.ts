@@ -1,4 +1,6 @@
 import dayjs = require('dayjs');
+import accountsService from '../accounts-service';
+import { accountDoesNotExistError } from '../transactions-service/errors';
 import transactionsRepository from '@/repositories/transactions-repository';
 import { TransactionEntity } from '@/protocols/transactions';
 
@@ -6,6 +8,16 @@ async function listTransactions(): Promise<TransactionEntity[]> {
   const transactionsList = await transactionsRepository.allTransactions();
 
   return transactionsList;
+}
+
+async function listTransactionsById(bankId: number): Promise<TransactionEntity[]> {
+  const checkAccount = await accountsService.validateAccountId(bankId);
+
+  if (checkAccount.length === 0) throw accountDoesNotExistError();
+
+  const transactionList = await transactionsRepository.allTransactionsByBankId(bankId);
+
+  return transactionList;
 }
 
 async function monthlyBalance(): Promise<any> {
@@ -74,4 +86,5 @@ export default {
   listTransactions,
   monthlyBalance,
   halfYearBalance,
+  listTransactionsById,
 };

@@ -9,6 +9,6 @@ export type TransactionEntity = {
 
 export type Transaction = Omit<TransactionEntity, 'id'>;
 
-//export type CreateAccountParams = Omit<TransactionEntity, 'id' | 'balance'>;
+export type TransactionByBankIdParams = Pick<TransactionEntity, 'bankId'>;
 
-//export type DeleteAccountParams = Pick<TransactionEntity, 'id'>;
+//export type CreateAccountParams = Omit<TransactionEntity, 'id' | 'balance'>;
